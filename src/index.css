@@ -20,9 +20,3 @@ html {
 .hero-background {
   background-position: center center;
 }
-
-@media (max-width: 768px) {
-  .hero-background {
-    background-position: 38% 42%;
-  }
-}

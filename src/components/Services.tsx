@@ -31,10 +31,11 @@ export const Services: React.FC = () => {
   ] as const;
 
   const formatPrice = (priceCzk: number) => {
-    if (language === 'cz') return `${priceCzk}`;
+    if (language === 'cz') return `${priceCzk} CZK`;
     const rate = language === 'pl' ? 5 : 24;
-    const converted = (priceCzk / rate).toFixed(1);
-    return `${priceCzk} / ${converted}`;
+    const foreignCurrency = language === 'pl' ? 'PLN' : 'EUR';
+    const converted = Math.round(priceCzk / rate);
+    return `${priceCzk} CZK / ${converted} ${foreignCurrency}`;
   };
 
   return (
@@ -119,6 +120,10 @@ export const Services: React.FC = () => {
                   </div>
 
                   <div className="md:hidden space-y-4">
+                    <div className="text-xs uppercase tracking-widest text-white/60 font-semibold">
+                      {t.services.currencyLabel}
+                    </div>
+
                     <div className="overflow-x-auto pb-1">
                       <div className="flex gap-2 min-w-max">
                         {t.services.priceColumns.map((label, idx) => (

@@ -7,15 +7,16 @@ export const Hero: React.FC = () => {
   const { t } = useLanguage();
   const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
   const heroFallback = `${import.meta.env.BASE_URL}images/hero/hero-main.svg`;
+  const mobileHeroPosition = '76% 40%';
 
   return (
     <section id="hero" className="relative min-h-[100svh] h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Ken Burns Effect */}
       <motion.div 
         initial={{ scale: isMobile ? 1.0 : 1.01 }}
-        animate={{ scale: isMobile ? 1.03 : 1.06 }}
+        animate={{ scale: isMobile ? 1.004 : 1.06 }}
         transition={{ 
-          duration: 12, 
+          duration: isMobile ? 8 : 12, 
           repeat: Infinity, 
           repeatType: "reverse", 
           ease: "easeInOut" 
@@ -25,6 +26,7 @@ export const Hero: React.FC = () => {
           backgroundImage:
             `url("https://images.unsplash.com/photo-1551524559-8af4e6624178?q=80&w=2826&auto=format&fit=crop"), url("${heroFallback}")`,
           backgroundSize: 'cover',
+          backgroundPosition: isMobile ? mobileHeroPosition : 'center center',
         }}
       >
         {/* Dark Overlay for better text readability */}
