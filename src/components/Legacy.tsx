@@ -5,6 +5,8 @@ import { User, HeartHandshake } from 'lucide-react';
 
 export const Legacy: React.FC = () => {
   const { t } = useLanguage();
+  const ownerFallback = `${import.meta.env.BASE_URL}images/legacy/owner.svg`;
+  const communityFallback = `${import.meta.env.BASE_URL}images/legacy/children.svg`;
 
   return (
     <section id="legacy" className="py-24 bg-snow-white text-slate-gray">
@@ -42,7 +44,7 @@ export const Legacy: React.FC = () => {
                 alt="Owner in ski jacket" 
                 className="absolute inset-0 w-full h-full object-cover object-center"
                 onError={(e) => {
-                  e.currentTarget.src = '/images/legacy/owner.svg';
+                  e.currentTarget.src = ownerFallback;
                 }}
               />
             </div>
@@ -73,7 +75,7 @@ export const Legacy: React.FC = () => {
                 alt="Children learning to ski" 
                 className="absolute inset-0 w-full h-full object-cover"
                 onError={(e) => {
-                  e.currentTarget.src = '/images/legacy/children.svg';
+                  e.currentTarget.src = communityFallback;
                 }}
               />
             </div>

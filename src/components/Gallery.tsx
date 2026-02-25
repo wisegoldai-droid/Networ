@@ -8,6 +8,7 @@ export const Gallery: React.FC = () => {
   const { t } = useLanguage();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const hasSelection = selectedIndex !== null;
+  const fallbackForIndex = (index: number) => `${import.meta.env.BASE_URL}images/gallery/gallery-0${index + 1}.svg`;
 
   const closeLightbox = () => setSelectedIndex(null);
   const showPrevious = () => {
@@ -70,7 +71,7 @@ export const Gallery: React.FC = () => {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
                 onError={(e) => {
-                  e.currentTarget.src = `/images/gallery/gallery-0${index + 1}.svg`;
+                  e.currentTarget.src = fallbackForIndex(index);
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-mountain-blue/90 via-mountain-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
@@ -146,7 +147,7 @@ export const Gallery: React.FC = () => {
                 alt={t.gallery.items[selectedIndex].caption} 
                 className="w-full h-auto max-h-[85vh] object-contain rounded-lg shadow-2xl"
                 onError={(e) => {
-                  e.currentTarget.src = `/images/gallery/gallery-0${selectedIndex + 1}.svg`;
+                  e.currentTarget.src = fallbackForIndex(selectedIndex);
                 }}
               />
               <div className="mt-4 text-center">

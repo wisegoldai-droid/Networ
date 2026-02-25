@@ -6,6 +6,7 @@ import { ChevronDown } from 'lucide-react';
 export const Hero: React.FC = () => {
   const { t } = useLanguage();
   const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
+  const heroFallback = `${import.meta.env.BASE_URL}images/hero/hero-main.svg`;
 
   return (
     <section id="hero" className="relative min-h-[100svh] h-screen flex items-center justify-center overflow-hidden">
@@ -22,7 +23,7 @@ export const Hero: React.FC = () => {
         className="hero-background absolute inset-0 z-0"
         style={{
           backgroundImage:
-            'url("https://images.unsplash.com/photo-1551524559-8af4e6624178?q=80&w=2826&auto=format&fit=crop"), url("/images/hero/hero-main.svg")',
+            `url("https://images.unsplash.com/photo-1551524559-8af4e6624178?q=80&w=2826&auto=format&fit=crop"), url("${heroFallback}")`,
           backgroundSize: 'cover',
         }}
       >
