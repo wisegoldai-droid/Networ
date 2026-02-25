@@ -113,16 +113,22 @@ export const Gallery: React.FC = () => {
             </button>
             <button
               type="button"
-              className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-              onClick={showPrevious}
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-[120] p-3 sm:p-2 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                showPrevious();
+              }}
               aria-label={t.gallery.previous}
             >
               <ChevronLeft size={28} />
             </button>
             <button
               type="button"
-              className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-              onClick={showNext}
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-[120] p-3 sm:p-2 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                showNext();
+              }}
               aria-label={t.gallery.next}
             >
               <ChevronRight size={28} />

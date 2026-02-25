@@ -76,7 +76,7 @@ export const Services: React.FC = () => {
             >
               {activeTab === 'rental' && (
                 <div className="space-y-6">
-                  <div className="overflow-x-auto pb-4">
+                  <div className="hidden md:block overflow-x-auto pb-4">
                     <table className="w-full text-left border-collapse min-w-[800px]">
                       <thead>
                         <tr>
@@ -116,6 +116,26 @@ export const Services: React.FC = () => {
                       </tbody>
                     </table>
                   </div>
+
+                  <div className="md:hidden space-y-4">
+                    {t.services.pricing.map((row, i) => (
+                      <div key={i} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                        <div className="flex items-center gap-2 mb-3">
+                          {getIcon(row.icon)}
+                          <span className="font-semibold text-white">{row.item}</span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-3 gap-y-2 text-sm">
+                          {row.prices.map((price, j) => (
+                            <React.Fragment key={j}>
+                              <span className="text-white/70">{t.services.priceColumns[j]}</span>
+                              <span className="text-right font-mono text-safety-orange font-bold">{formatPrice(price)}</span>
+                            </React.Fragment>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
                   <div className="flex items-center justify-end space-x-2 text-white/40 text-sm italic">
                     <Snowflake size={14} />
                     <span>{t.services.exchangeRateNote}</span>

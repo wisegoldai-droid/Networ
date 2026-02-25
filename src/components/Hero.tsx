@@ -7,22 +7,21 @@ export const Hero: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-[100svh] h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Ken Burns Effect */}
       <motion.div 
-        initial={{ scale: 1.03 }}
-        animate={{ scale: 1.1 }}
+        initial={{ scale: 1.01 }}
+        animate={{ scale: 1.06 }}
         transition={{ 
           duration: 12, 
           repeat: Infinity, 
           repeatType: "reverse", 
           ease: "easeInOut" 
         }}
-        className="absolute inset-0 z-0"
+        className="hero-background absolute inset-0 z-0"
         style={{
           backgroundImage:
             'url("https://images.unsplash.com/photo-1551524559-8af4e6624178?q=80&w=2826&auto=format&fit=crop"), url("/images/hero/hero-main.svg")',
-          backgroundPosition: 'center',
           backgroundSize: 'cover',
         }}
       >
@@ -32,12 +31,12 @@ export const Hero: React.FC = () => {
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20">
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-16 md:mt-20">
         <motion.h1 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-snow-white tracking-tighter mb-6 leading-tight"
+          className="text-4xl md:text-7xl lg:text-8xl font-display font-bold text-snow-white tracking-tighter mb-5 md:mb-6 leading-tight"
         >
           {t.hero.title}
         </motion.h1>
@@ -46,7 +45,7 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-lg md:text-2xl text-snow-white/90 font-light mb-10 max-w-3xl mx-auto"
+          className="text-base md:text-2xl text-snow-white/90 font-light mb-8 md:mb-10 max-w-3xl mx-auto"
         >
           {t.hero.subtitle}
         </motion.p>

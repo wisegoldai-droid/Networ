@@ -16,3 +16,13 @@
 html {
   scroll-behavior: smooth;
 }
+
+.hero-background {
+  background-position: center center;
+}
+
+@media (max-width: 768px) {
+  .hero-background {
+    background-position: 68% center;
+  }
+}
