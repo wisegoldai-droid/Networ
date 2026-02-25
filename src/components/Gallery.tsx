@@ -6,11 +6,18 @@ import { galleryImages } from '../data/galleryImages';
 
 export const Gallery: React.FC = () => {
   const { t } = useLanguage();
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const hasSelection = selectedIndex !== null;
   const fallbackForIndex = (index: number) => `${import.meta.env.BASE_URL}images/gallery/gallery-0${index + 1}.svg`;
 
   const closeLightbox = () => setSelectedIndex(null);
+  const showCarouselPrevious = () => {
+    setCurrentIndex((currentIndex - 1 + galleryImages.length) % galleryImages.length);
+  };
+  const showCarouselNext = () => {
+    setCurrentIndex((currentIndex + 1) % galleryImages.length);
+  };
   const showPrevious = () => {
     if (selectedIndex === null) return;
     setSelectedIndex((selectedIndex - 1 + galleryImages.length) % galleryImages.length);
@@ -52,43 +59,86 @@ export const Gallery: React.FC = () => {
           <div className="w-24 h-1 bg-safety-orange mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {galleryImages.map((img, index) => (
-            <motion.button
-              key={img.id}
+        <div className="relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] md:aspect-[16/9] group"
+          >
+            <button
               type="button"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative group cursor-pointer overflow-hidden rounded-2xl aspect-[4/3] shadow-md hover:shadow-xl transition-shadow text-left"
-              onClick={() => setSelectedIndex(index)}
-              aria-label={`${t.gallery.items[index].year}: ${t.gallery.items[index].caption}`}
-            >
-              <img 
-                src={img.url} 
-                alt={t.gallery.items[index].caption} 
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                loading="lazy"
-                onError={(e) => {
-                  e.currentTarget.src = fallbackForIndex(index);
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-mountain-blue/90 via-mountain-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                <div className="flex justify-between items-end">
-                  <div>
-                    <span className="text-safety-orange font-mono text-sm font-bold tracking-widest uppercase mb-1 block">
-                      {t.gallery.items[index].year}
-                    </span>
-                    <span className="text-white font-medium text-lg">
-                      {t.gallery.items[index].caption}
-                    </span>
-                  </div>
-                  <ZoomIn className="text-white/70 w-6 h-6 flex-shrink-0 ml-4" />
+              className="absolute inset-0 z-20"
+              onClick={() => setSelectedIndex(currentIndex)}
+              aria-label={`${t.gallery.items[currentIndex].year}: ${t.gallery.items[currentIndex].caption}`}
+            />
+            <img
+              src={galleryImages[currentIndex].url}
+              alt={t.gallery.items[currentIndex].caption}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+              onError={(e) => {
+                e.currentTarget.src = fallbackForIndex(currentIndex);
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-mountain-blue/90 via-mountain-blue/30 to-transparent z-10" />
+
+            <div className="absolute inset-x-0 bottom-0 p-4 md:p-6 z-20">
+              <div className="flex items-end justify-between gap-4">
+                <div>
+                  <span className="text-safety-orange font-mono text-sm font-bold tracking-widest uppercase mb-1 block">
+                    {t.gallery.items[currentIndex].year}
+                  </span>
+                  <span className="text-white font-semibold text-xl md:text-2xl">
+                    {t.gallery.items[currentIndex].caption}
+                  </span>
                 </div>
+                <ZoomIn className="text-white/80 w-7 h-7 flex-shrink-0" />
               </div>
-            </motion.button>
-          ))}
+            </div>
+
+            <button
+              type="button"
+              className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 rounded-full bg-black/35 text-white hover:bg-black/50 transition-colors"
+              onClick={showCarouselPrevious}
+              aria-label={t.gallery.previous}
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button
+              type="button"
+              className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 rounded-full bg-black/35 text-white hover:bg-black/50 transition-colors"
+              onClick={showCarouselNext}
+              aria-label={t.gallery.next}
+            >
+              <ChevronRight size={24} />
+            </button>
+          </motion.div>
+
+          <div className="flex gap-3 overflow-x-auto mt-4 pb-1">
+            {galleryImages.map((img, index) => (
+              <button
+                key={img.id}
+                type="button"
+                onClick={() => setCurrentIndex(index)}
+                className={`relative h-20 w-28 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
+                  currentIndex === index ? 'border-safety-orange' : 'border-transparent opacity-70 hover:opacity-100'
+                }`}
+                aria-label={`${t.gallery.items[index].year}: ${t.gallery.items[index].caption}`}
+              >
+                <img
+                  src={img.url}
+                  alt={t.gallery.items[index].caption}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.src = fallbackForIndex(index);
+                  }}
+                />
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
