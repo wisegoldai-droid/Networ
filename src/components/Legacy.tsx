@@ -38,7 +38,7 @@ export const Legacy: React.FC = () => {
             {/* Owner Image */}
             <div className="relative h-80 mt-8 rounded-2xl overflow-hidden shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=2940&auto=format&fit=crop" 
+                src="/images/legacy/owner.svg"
                 alt="Owner in ski jacket" 
                 className="absolute inset-0 w-full h-full object-cover object-top"
                 referrerPolicy="no-referrer"
@@ -67,7 +67,7 @@ export const Legacy: React.FC = () => {
             {/* Decorative Image */}
             <div className="relative h-80 mt-8 rounded-2xl overflow-hidden shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1541883654-9345c0556272?q=80&w=2940&auto=format&fit=crop" 
+                src="/images/legacy/children.svg"
                 alt="Children learning to ski" 
                 className="absolute inset-0 w-full h-full object-cover"
                 referrerPolicy="no-referrer"

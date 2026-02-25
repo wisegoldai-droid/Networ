@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+  <rect width="1600" height="1200" fill="#1e3a5f"/>
+  <path d="M0 980 L320 720 L620 980 Z" fill="#cbd5e1"/>
+  <path d="M450 980 L980 540 L1450 980 Z" fill="#e2e8f0"/>
+  <text x="80" y="1100" fill="#f8fafc" font-size="54" font-family="Arial, sans-serif">Gallery 01</text>
+</svg>

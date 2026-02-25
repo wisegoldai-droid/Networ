@@ -2,25 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
-
-const galleryImages = [
-  {
-    id: 1,
-    url: "https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=2940&auto=format&fit=crop",
-  },
-  {
-    id: 2,
-    url: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2940&auto=format&fit=crop",
-  },
-  {
-    id: 3,
-    url: "https://images.unsplash.com/photo-1541883654-9345c0556272?q=80&w=2940&auto=format&fit=crop",
-  },
-  {
-    id: 4,
-    url: "https://images.unsplash.com/photo-1522055657053-47d33292415d?q=80&w=2940&auto=format&fit=crop",
-  }
-];
+import { galleryImages } from '../data/galleryImages';
 
 export const Gallery: React.FC = () => {
   const { t } = useLanguage();
