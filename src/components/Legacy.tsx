@@ -38,10 +38,12 @@ export const Legacy: React.FC = () => {
             {/* Owner Image */}
             <div className="relative h-80 mt-8 rounded-2xl overflow-hidden shadow-xl">
               <img 
-                src="/images/legacy/owner.svg"
+                src="https://assets.cdn.filesafe.space/iNNiZuenpqXYxyCSZaNX/media/699ea3b12837e86d0d70e82c.webp"
                 alt="Owner in ski jacket" 
-                className="absolute inset-0 w-full h-full object-cover object-top"
-                referrerPolicy="no-referrer"
+                className="absolute inset-0 w-full h-full object-cover object-center"
+                onError={(e) => {
+                  e.currentTarget.src = '/images/legacy/owner.svg';
+                }}
               />
             </div>
           </motion.div>
@@ -67,10 +69,12 @@ export const Legacy: React.FC = () => {
             {/* Decorative Image */}
             <div className="relative h-80 mt-8 rounded-2xl overflow-hidden shadow-xl">
               <img 
-                src="/images/legacy/children.svg"
+                src="https://assets.cdn.filesafe.space/iNNiZuenpqXYxyCSZaNX/media/699ea6cc1001a535c36f5fa3.webp"
                 alt="Children learning to ski" 
                 className="absolute inset-0 w-full h-full object-cover"
-                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.src = '/images/legacy/children.svg';
+                }}
               />
             </div>
           </motion.div>

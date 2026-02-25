@@ -68,7 +68,10 @@ export const Gallery: React.FC = () => {
                 src={img.url} 
                 alt={t.gallery.items[index].caption} 
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                referrerPolicy="no-referrer"
+                loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.src = `/images/gallery/gallery-0${index + 1}.svg`;
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-mountain-blue/90 via-mountain-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                 <div className="flex justify-between items-end">
@@ -136,7 +139,9 @@ export const Gallery: React.FC = () => {
                 src={galleryImages[selectedIndex].url} 
                 alt={t.gallery.items[selectedIndex].caption} 
                 className="w-full h-auto max-h-[85vh] object-contain rounded-lg shadow-2xl"
-                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.src = `/images/gallery/gallery-0${selectedIndex + 1}.svg`;
+                }}
               />
               <div className="mt-4 text-center">
                 <span className="text-safety-orange font-mono text-lg font-bold tracking-widest uppercase mr-4">

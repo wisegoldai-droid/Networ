@@ -10,8 +10,8 @@ export const Hero: React.FC = () => {
     <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Ken Burns Effect */}
       <motion.div 
-        initial={{ scale: 1.02, x: -20, y: -10 }}
-        animate={{ scale: 1.12, x: 20, y: 10 }}
+        initial={{ scale: 1.03 }}
+        animate={{ scale: 1.1 }}
         transition={{ 
           duration: 12, 
           repeat: Infinity, 
@@ -20,7 +20,8 @@ export const Hero: React.FC = () => {
         }}
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url("/images/hero/hero-main.svg")',
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1551524559-8af4e6624178?q=80&w=2826&auto=format&fit=crop"), url("/images/hero/hero-main.svg")',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
         }}

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8fd0ff"/>
+      <stop offset="1" stop-color="#1e3a5f"/>
+    </linearGradient>
+    <linearGradient id="snow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <path d="M0 640 L340 430 L640 640 Z" fill="#e2e8f0"/>
+  <path d="M360 640 L870 350 L1290 640 Z" fill="#f1f5f9"/>
+  <path d="M980 640 L1330 450 L1600 640 Z" fill="#e2e8f0"/>
+  <rect y="640" width="1600" height="360" fill="url(#snow)"/>
+  <circle cx="430" cy="760" r="38" fill="#1e293b"/>
+  <rect x="408" y="790" width="44" height="90" rx="18" fill="#1e293b"/>
+  <circle cx="560" cy="770" r="34" fill="#334155"/>
+  <rect x="542" y="796" width="36" height="80" rx="16" fill="#334155"/>
+  <circle cx="700" cy="750" r="42" fill="#0f172a"/>
+  <rect x="676" y="784" width="48" height="98" rx="18" fill="#0f172a"/>
+  <rect x="300" y="815" width="520" height="12" rx="6" fill="#f97316" opacity="0.8"/>
+  <text x="70" y="955" fill="#1e3a5f" font-size="44" font-family="Arial, sans-serif">Community Image Placeholder</text>
+</svg>
