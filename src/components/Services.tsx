@@ -23,6 +23,7 @@ const getIcon = (type: string) => {
 export const Services: React.FC = () => {
   const { t, language } = useLanguage();
   const [activeTab, setActiveTab] = useState<'rental' | 'service'>('rental');
+  const [mobileDurationIndex, setMobileDurationIndex] = useState(1);
 
   const tabs = [
     { id: 'rental', label: t.services.tabs.rental, icon: Snowflake },
@@ -118,19 +119,36 @@ export const Services: React.FC = () => {
                   </div>
 
                   <div className="md:hidden space-y-4">
+                    <div className="overflow-x-auto pb-1">
+                      <div className="flex gap-2 min-w-max">
+                        {t.services.priceColumns.map((label, idx) => (
+                          <button
+                            key={label}
+                            type="button"
+                            onClick={() => setMobileDurationIndex(idx)}
+                            className={`px-3 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
+                              mobileDurationIndex === idx
+                                ? 'bg-safety-orange text-white'
+                                : 'bg-white/10 text-white/70'
+                            }`}
+                          >
+                            {label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
                     {t.services.pricing.map((row, i) => (
                       <div key={i} className="rounded-2xl border border-white/10 bg-white/5 p-4">
                         <div className="flex items-center gap-2 mb-3">
                           {getIcon(row.icon)}
                           <span className="font-semibold text-white">{row.item}</span>
                         </div>
-                        <div className="grid grid-cols-2 gap-x-3 gap-y-2 text-sm">
-                          {row.prices.map((price, j) => (
-                            <React.Fragment key={j}>
-                              <span className="text-white/70">{t.services.priceColumns[j]}</span>
-                              <span className="text-right font-mono text-safety-orange font-bold">{formatPrice(price)}</span>
-                            </React.Fragment>
-                          ))}
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-white/70">{t.services.priceColumns[mobileDurationIndex]}</span>
+                          <span className="text-right font-mono text-safety-orange font-bold text-base">
+                            {formatPrice(row.prices[mobileDurationIndex])}
+                          </span>
                         </div>
                       </div>
                     ))}

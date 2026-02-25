@@ -5,13 +5,14 @@ import { ChevronDown } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const { t } = useLanguage();
+  const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
 
   return (
     <section id="hero" className="relative min-h-[100svh] h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Ken Burns Effect */}
       <motion.div 
-        initial={{ scale: 1.01 }}
-        animate={{ scale: 1.06 }}
+        initial={{ scale: isMobile ? 1.0 : 1.01 }}
+        animate={{ scale: isMobile ? 1.03 : 1.06 }}
         transition={{ 
           duration: 12, 
           repeat: Infinity, 
